@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I’m Drone · 조성윤 포트폴리오</title>
+  <meta name="description" content="드론 시뮬레이터 게임">
+  <meta name="theme-color" content="#0b0e14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.dataset.theme=t})();</script>
+  <link rel="stylesheet" href="../css/style.css?v=1795187114">
+</head>
+<body>
+<div class="page">
+  <div class="aurora" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="../index.html">jokkilook<span>_</span></a>
+      <nav class="nav__links" aria-label="사이트 이동">
+        <a href="../index.html#about">about</a>
+        <a href="../index.html#skills">skills</a>
+        <a href="../index.html#projects">projects</a>
+        <a href="../index.html#career">career</a>
+        <a class="nav__cta" href="../index.html#contact">contact</a>
+        <button type="button" class="theme-toggle" aria-label="밝은 모드와 어두운 모드 전환"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="doc">
+    <a class="doc__back" href="../index.html#projects">← 프로젝트 목록</a>
+    <header class="doc__head">
+      <div class="meta"><span class="badge">직접 구현</span><span class="badge">출시</span><span>2024.07 – 2024.11</span></div>
+      <h1 class="doc__title">I’m Drone</h1>
+      <p class="doc__summary">드론 시뮬레이터 게임</p>
+      <ul class="tags"><li>Unreal Engine</li><li>Blueprint</li><li>C++</li></ul>
+      <div class="btn-row"><a class="btn btn--primary" href="https://store.steampowered.com/app/3272680/Im_drone/" target="_blank" rel="noopener">Steam</a><a class="btn btn--ghost" href="https://www.youtube.com/watch?v=fEtQH9LUydU" target="_blank" rel="noopener">YouTube</a></div>
+    </header>
+    <div class="cover doc__cover"><img src="../assets/covers/im-drone.jpg" alt="I’m Drone 대표 이미지" loading="lazy"></div>
+<section class="doc__section">
+<h2>게임 소개</h2>
+<p>드론 시뮬레이터 게임</p>
+<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/fEtQH9LUydU" title="플레이 영상" loading="lazy" allowfullscreen allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+</section>
+<section class="doc__section">
+<h2>프로젝트 정보</h2>
+<dl class="info glass">
+<div class="info__row"><dt>팀 구성</dt><dd>2인</dd></div>
+<div class="info__row"><dt>개발 기간</dt><dd>2024.07 ~ 2024.11</dd></div>
+<div class="info__row"><dt>담당</dt><dd>드론 비행 시스템, 게임 모드, 레벨 디자인, UI·설정, 현지화, 최적화</dd></div>
+<div class="info__row"><dt>사용 기술</dt><dd>Unreal Engine 5, C++, Blueprint</dd></div>
+<div class="info__row"><dt>출시</dt><dd>Steam</dd></div>
+</dl>
+</section>
+<section class="doc__section">
+<h2>역할</h2>
+<h3>물리 기반 드론 비행 (C++)</h3>
+<ul>
+<li>처음에 블루프린트로 만든 드론을 C++로 전환</li>
+<li>4개의 모터 컴포넌트가 각각 힘을 가하는 쿼드콥터 구조</li>
+<li>PID 제어로 Yaw 회전 안정화, 뒤집혔을 때 처리, 최고 속도·상승·하강 속도 제한</li>
+<li>저사양 PC를 위한 단순화된 비행 방식(심플 모드) 추가</li>
+</ul>
+<h3>조작</h3>
+<ul>
+<li>쓰로틀 AUTO / MANUAL 모드, 롤·피치·쓰로틀 민감도 설정</li>
+<li>게임패드와 드론 조종기(모드2) 입력, 화면 UI 컨트롤러 지원</li>
+</ul>
+<h3>게임 모드</h3>
+<ul>
+<li>타임어택: 체크포인트, 다음 체크포인트 방향 표시, 타이머, 클리어 화면</li>
+<li>배달 모드: 패키지 픽업/투하, 충격 시 패키지 대미지, 비행기 함정</li>
+<li>보물찾기, 프리 모드, 미로 생성기, 무한 맵 생성</li>
+<li>비행 가능 구역을 벗어나면 글리치 화면 효과, 5초 안에 돌아오지 않으면 리스폰</li>
+</ul>
+<h3>레벨 디자인</h3>
+<ul>
+<li>훈련장, 캐니언, 베니스, 지하철, 숲 등 여러 맵 제작. 지하철 맵에는 순회하는 열차, 숲 맵에는 동물 낙하 장애물 배치</li>
+</ul>
+<h3>UI &amp; 설정</h3>
+<ul>
+<li>메인 메뉴, 설정(그래픽, 사운드, 언어, 수직 동기화), 튜토리얼, 피치 확인 HUD</li>
+<li>비동기 맵 로딩, 기록 저장 시스템</li>
+</ul>
+<h3>현지화</h3>
+<ul>
+<li>텍스트를 스트링 테이블로 관리하도록 전환하고 11개 언어 지원 (한국어, 영어, 중국어 간체·번체, 일본어, 독일어, 프랑스어, 아랍어, 베트남어, 스페인어, 러시아어)</li>
+</ul>
+<h3>최적화</h3>
+<ul>
+<li>나나이트 적용, 텍스처 크기 축소, 셰이더 최적화, 메인 메뉴 프레임 드랍 해결</li>
+</ul>
+</section>
+<section class="doc__section">
+<h2>문제 해결</h2>
+<h3>C++ 전환 후 배포용 패키지가 실행되지 않던 문제</h3>
+<ul>
+<li>원인: C++ 생성자에서 세이브 파일을 불러오는 함수(LoadFromSlot)를 호출하고 있었음</li>
+<li>해결: 세이브 로드를 생성자 밖으로 옮겨 해결</li>
+</ul>
+<h3>타임어택 시작 지점 통과음이 비정상적으로 크게 들리던 문제</h3>
+<ul>
+<li>원인: 블루프린트 핀이 잘못 연결돼 시작 지점이 여러 개 겹쳐 생성되고, 그 수만큼 같은 소리가 동시에 재생됨</li>
+<li>해결: 연결을 바로잡아 시작 지점이 하나만 생성되도록 수정</li>
+</ul>
+<h3>속도 제한에 따라 조작감이 달라지던 문제</h3>
+<ul>
+<li>원인: 쓰로틀 출력량이 속도 제한 값에 따라 바뀌는 구조</li>
+<li>해결: 쓰로틀 출력은 그대로 두고 속도 제한만 따로 적용하도록 방식 변경</li>
+</ul>
+</section>
+    <nav class="doc__pager" aria-label="다른 프로젝트"><a class="glass" href="campusmate.html"><span class="dir">← 이전 프로젝트</span>캠퍼스메이트</a><a class="glass next" href="moebius.html"><span class="dir">다음 프로젝트 →</span>Moebius : EndlessDream</a></nav>
+  </main>
+</div>
+<script src="../js/main.js?v=1795187114"></script>
+</body>
+</html>
