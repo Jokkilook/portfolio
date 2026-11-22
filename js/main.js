@@ -15,10 +15,12 @@
 })();
 
 // 프로젝트 필터: 전체 / AI 활용 / 직접 구현
+// 왼쪽 메뉴와 라이브러리 제목 옆, 두 곳의 버튼이 같은 상태를 공유한다
 (function () {
-  var buttons = document.querySelectorAll('.filter__btn');
+  var buttons = document.querySelectorAll('[data-filter]');
   var cards = document.querySelectorAll('#projects .card');
-  if (!buttons.length) return;
+  var library = document.getElementById('projects');
+  if (!buttons.length || !cards.length) return;
 
   function apply(filter) {
     cards.forEach(function (card) {
@@ -32,37 +34,49 @@
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
       apply(button.dataset.filter);
+      // 왼쪽 메뉴에서 눌렀으면 걸러진 목록이 보이도록 라이브러리로 이동
+      if (button.closest('.rail') && library) library.scrollIntoView();
     });
   });
 })();
 
-// 커서 반응: 배경 빛이 커서를 따라오고, 유리 카드에 빛 반사와 기울임이 생긴다
+// 왼쪽 메뉴: 지금 보고 있는 섹션을 표시
+(function () {
+  var links = document.querySelectorAll('.rail__nav a[href^="#"]');
+  if (!links.length || !('IntersectionObserver' in window)) return;
+
+  var byId = {};
+  links.forEach(function (link) {
+    byId[link.getAttribute('href').slice(1)] = link;
+  });
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (link) {
+          link.classList.toggle('is-active', link === byId[entry.target.id]);
+        });
+      });
+    },
+    // 화면 위쪽 1/3 지점을 지나는 섹션을 현재 섹션으로 본다
+    { rootMargin: '-30% 0px -65% 0px' }
+  );
+
+  Object.keys(byId).forEach(function (id) {
+    var section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
+})();
+
+// 카드 커서 반응: 커서 지점의 빛 반사와 살짝 기울임
 (function () {
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!finePointer) return;
 
-  var aurora = document.querySelector('.aurora');
-  var target = { x: window.innerWidth * 0.7, y: window.innerHeight * 0.2 };
-  var current = { x: target.x, y: target.y };
-  var running = false;
   var tilted = null;
   var MAX_TILT = 3; // 도
-  var DRIFT = 0.18; // 커서 이동량 중 배경 빛이 따라가는 비율
-  var EASE = 0.04; // 한 프레임에 목표까지 좁히는 비율 (작을수록 느긋함)
-
-  // 배경 빛은 제자리(화면 오른쪽 위)에서 커서 쪽으로 조금만, 천천히 끌려간다
-  function follow() {
-    current.x += (target.x - current.x) * EASE;
-    current.y += (target.y - current.y) * EASE;
-    aurora.style.setProperty('--mx', current.x.toFixed(1) + 'px');
-    aurora.style.setProperty('--my', current.y.toFixed(1) + 'px');
-    if (Math.abs(target.x - current.x) + Math.abs(target.y - current.y) > 0.5) {
-      requestAnimationFrame(follow);
-    } else {
-      running = false;
-    }
-  }
 
   function resetTilt() {
     if (!tilted) return;
@@ -72,35 +86,20 @@
   }
 
   document.addEventListener('pointermove', function (event) {
-    if (aurora) {
-      target.x = window.innerWidth * 0.7 + (event.clientX - window.innerWidth / 2) * DRIFT;
-      target.y = window.innerHeight * 0.2 + (event.clientY - window.innerHeight / 2) * DRIFT;
-      if (reduceMotion) {
-        current.x = target.x;
-        current.y = target.y;
-      }
-      if (!running) {
-        running = true;
-        requestAnimationFrame(follow);
-      }
-    }
+    var card = event.target.closest ? event.target.closest('.card') : null;
+    if (card !== tilted) resetTilt();
+    if (!card) return;
 
-    var glass = event.target.closest ? event.target.closest('.glass') : null;
-    if (!glass) {
-      resetTilt();
-      return;
-    }
-    var rect = glass.getBoundingClientRect();
+    var rect = card.getBoundingClientRect();
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
-    glass.style.setProperty('--gx', x.toFixed(1) + 'px');
-    glass.style.setProperty('--gy', y.toFixed(1) + 'px');
+    card.style.setProperty('--gx', x.toFixed(1) + 'px');
+    card.style.setProperty('--gy', y.toFixed(1) + 'px');
 
-    if (glass !== tilted) resetTilt();
-    if (!reduceMotion && glass.classList.contains('card')) {
-      tilted = glass;
-      glass.style.setProperty('--ry', ((x / rect.width - 0.5) * 2 * MAX_TILT).toFixed(2) + 'deg');
-      glass.style.setProperty('--rx', ((0.5 - y / rect.height) * 2 * MAX_TILT).toFixed(2) + 'deg');
+    if (!reduceMotion) {
+      tilted = card;
+      card.style.setProperty('--ry', ((x / rect.width - 0.5) * 2 * MAX_TILT).toFixed(2) + 'deg');
+      card.style.setProperty('--rx', ((0.5 - y / rect.height) * 2 * MAX_TILT).toFixed(2) + 'deg');
     }
   });
 
