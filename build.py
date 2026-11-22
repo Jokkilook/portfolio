@@ -323,6 +323,7 @@ def detail(p, newer, older, total):
   <main class="main">
     <div class="wrap doc">
       <a class="doc__back" href="../index.html">← 프로젝트 목록</a>
+      <div class="doc__top">
       <header class="doc__head">
         <div class="meta">{badges(p)}<span>{p['period']}</span></div>
         <h1 class="doc__title">{title}</h1>
@@ -331,6 +332,7 @@ def detail(p, newer, older, total):
         <div class="btn-row">{links}</div>
       </header>
       {cover(p, '../')}
+      </div>
 {render_body(p['body'])}
       <nav class="doc__pager" aria-label="다른 프로젝트">{pager}</nav>
     </div>
