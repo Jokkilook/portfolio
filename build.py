@@ -392,8 +392,8 @@ def main():
     index = ROOT / "index.html"
     text = index.read_text(encoding="utf-8")
     text = fill(text, "rail", "  " + rail("", True, total))
-    ai_note = ""  # AI를 쓴 방식이 프로젝트마다 달라 한 줄로 묶어 설명하지 않는다
-    hand_note = "AI 없이 설계하고 구현한 프로젝트. AI의 결과물을 판단하는 기준이 된 경험"
+    ai_note = ""  # 묶음 제목 옆 설명은 쓰지 않는다 (필요하면 여기에 문구를 넣는다)
+    hand_note = ""
     text = fill(text, "ai", group(projects, "ai", "AI 활용 프로젝트", ai_note))
     text = fill(text, "hand", group(projects, "hand", "직접 구현 프로젝트", hand_note))
     text = re.sub(r'(css/style\.css|js/main\.js)(\?v=\d+)?"', lambda m: f'{m.group(1)}?v={VERSION}"', text)
