@@ -2,6 +2,7 @@
 slug: campusmate
 title: 캠퍼스메이트
 summary: 같은 대학교의 친구를 찾기 위한 어플. 틴더 + 에브리타임 느낌의 서비스
+brief: Firestore 실시간 1:1·그룹 채팅, 매칭, 커뮤니티, 푸시 알림 (Flutter)
 period: 2024.03 – 2024.06
 date: 2024-03-05
 kind: hand

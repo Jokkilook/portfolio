@@ -2,6 +2,7 @@
 slug: im-drone
 title: I’m Drone
 summary: 드론 시뮬레이터 게임
+brief: 모터 4개 쿼드콥터 물리와 PID 제어(C++), 게임 모드 4종, 11개 언어 현지화
 period: 2024.07 – 2024.11
 date: 2024-07-11
 kind: hand

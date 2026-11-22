@@ -2,6 +2,7 @@
 slug: moebius
 title: Moebius: Endless Dream
 summary: 미스터리 방탈출 게임
+brief: 기획·아트를 뺀 개발 전반: 상호작용, 인벤토리, 세이브/설정, 스팀 도전과제, 현지화
 period: 2025.03 – 2025.07
 date: 2025-03-11
 kind: hand

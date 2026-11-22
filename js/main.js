@@ -14,32 +14,6 @@
   });
 })();
 
-// 프로젝트 필터: 전체 / AI 활용 / 직접 구현
-// 왼쪽 메뉴와 라이브러리 제목 옆, 두 곳의 버튼이 같은 상태를 공유한다
-(function () {
-  var buttons = document.querySelectorAll('[data-filter]');
-  var cards = document.querySelectorAll('#projects .card');
-  var library = document.getElementById('projects');
-  if (!buttons.length || !cards.length) return;
-
-  function apply(filter) {
-    cards.forEach(function (card) {
-      card.hidden = filter !== 'all' && card.dataset.kind !== filter;
-    });
-    buttons.forEach(function (button) {
-      button.setAttribute('aria-pressed', String(button.dataset.filter === filter));
-    });
-  }
-
-  buttons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      apply(button.dataset.filter);
-      // 왼쪽 메뉴에서 눌렀으면 걸러진 목록이 보이도록 라이브러리로 이동
-      if (button.closest('.rail') && library) library.scrollIntoView();
-    });
-  });
-})();
-
 // 왼쪽 메뉴: 지금 보고 있는 섹션을 표시
 (function () {
   var links = document.querySelectorAll('.rail__nav a[href^="#"]');
@@ -69,39 +43,15 @@
   });
 })();
 
-// 카드 커서 반응: 커서 지점의 빛 반사와 살짝 기울임
+// 프로젝트 줄의 빛 반사: 커서가 있는 지점이 밝아진다
 (function () {
-  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!finePointer) return;
-
-  var tilted = null;
-  var MAX_TILT = 3; // 도
-
-  function resetTilt() {
-    if (!tilted) return;
-    tilted.style.removeProperty('--rx');
-    tilted.style.removeProperty('--ry');
-    tilted = null;
-  }
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
   document.addEventListener('pointermove', function (event) {
-    var card = event.target.closest ? event.target.closest('.card') : null;
-    if (card !== tilted) resetTilt();
-    if (!card) return;
-
-    var rect = card.getBoundingClientRect();
-    var x = event.clientX - rect.left;
-    var y = event.clientY - rect.top;
-    card.style.setProperty('--gx', x.toFixed(1) + 'px');
-    card.style.setProperty('--gy', y.toFixed(1) + 'px');
-
-    if (!reduceMotion) {
-      tilted = card;
-      card.style.setProperty('--ry', ((x / rect.width - 0.5) * 2 * MAX_TILT).toFixed(2) + 'deg');
-      card.style.setProperty('--rx', ((0.5 - y / rect.height) * 2 * MAX_TILT).toFixed(2) + 'deg');
-    }
+    var row = event.target.closest ? event.target.closest('.row') : null;
+    if (!row) return;
+    var rect = row.getBoundingClientRect();
+    row.style.setProperty('--gx', (event.clientX - rect.left).toFixed(1) + 'px');
+    row.style.setProperty('--gy', (event.clientY - rect.top).toFixed(1) + 'px');
   });
-
-  document.addEventListener('pointerleave', resetTilt);
 })();
