@@ -220,10 +220,11 @@ def group(projects, kind, heading, note):
     mine = [p for p in projects if p["kind"] == kind]
     rows = "\n".join(row(p) for p in mine if p.get("points"))
     rest = "\n".join(small_card(p) for p in mine if not p.get("points"))
+    desc = f"          <p>{note}</p>" if note else ""
     table = f'\n        <div class="pcards">\n{rest}\n        </div>' if rest else ""
     return f"""        <div class="group-head group-head--{kind}">
           <h2>{heading} <span class="count">{len(mine)}</span></h2>
-          <p>{note}</p>
+{desc}
         </div>
 {rows}{table}"""
 
@@ -391,7 +392,7 @@ def main():
     index = ROOT / "index.html"
     text = index.read_text(encoding="utf-8")
     text = fill(text, "rail", "  " + rail("", True, total))
-    ai_note = "Claude Code 같은 AI 도구가 일하는 방식을 설계하고 결과를 검증해 만든 프로젝트"
+    ai_note = ""  # AI를 쓴 방식이 프로젝트마다 달라 한 줄로 묶어 설명하지 않는다
     hand_note = "AI 없이 설계하고 구현한 프로젝트. AI의 결과물을 판단하는 기준이 된 경험"
     text = fill(text, "ai", group(projects, "ai", "AI 활용 프로젝트", ai_note))
     text = fill(text, "hand", group(projects, "hand", "직접 구현 프로젝트", hand_note))
