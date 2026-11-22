@@ -342,6 +342,13 @@ img {
   transition: background 0.15s;
 }
 
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-right: 8px;
+}
+
 .btn--primary {
   background: var(--accent);
   color: var(--on-accent);
@@ -554,6 +561,13 @@ img {
   transition: background 0.15s;
 }
 
+.mini svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  margin-right: 6px;
+}
+
 .mini:hover {
   background: var(--panel-hover);
 }
@@ -649,43 +663,76 @@ img {
   font-size: 12px;
 }
 
-/* 나머지 프로젝트 표 */
-.ptable {
-  padding: 2px 18px;
-  font-size: 13px;
+/* 나머지 프로젝트: 위쪽 줄과 같은 형식의 작은 줄 (썸네일 왼쪽, 글 오른쪽) */
+.pcards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
 }
 
-.ptable__row {
-  min-height: 32px;
-  padding: 4px 0;
-  display: grid;
-  grid-template-columns: 190px 84px minmax(0, 1fr) 160px;
+.pcard {
+  overflow: hidden;
+  display: flex;
   gap: 14px;
-  align-items: center;
-  border-top: 1px solid var(--line);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
   color: var(--text);
   text-decoration: none;
+  transition: border-color 0.2s;
 }
 
-.ptable__row:first-child {
-  border-top: 0;
+.pcard:hover {
+  border-color: var(--accent);
 }
 
-.ptable__row:hover .ptable__name {
-  color: var(--accent-text);
+.pcard__media {
+  position: relative;
+  flex: 0 0 132px;
+  min-height: 74px;
+  background: #17191e;
 }
 
-.ptable__name {
-  font-weight: 700;
+.pcard__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.ptable__brief {
-  color: var(--text-soft);
+.pcard__body {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 14px 8px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
 }
 
-.ptable__period {
-  text-align: right;
+.pcard__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 8px;
+}
+
+.pcard__head strong {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.pcard__period {
+  margin-left: auto;
+  font-size: 12px;
   color: var(--muted);
+}
+
+.pcard__brief {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-soft);
 }
 
 /* ── 섹션 공통 ─────────────────────────────── */
@@ -1183,24 +1230,17 @@ img {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .ptable {
-    padding: 2px 14px;
+  .pcards {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .ptable__row {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 2px 12px;
-    padding: 10px 0;
+  .pcard__media {
+    flex-basis: 104px;
   }
 
-  .ptable__brief {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-
-  .ptable__period {
-    grid-column: 1 / -1;
-    text-align: left;
+  .pcard__period {
+    margin-left: 0;
+    flex-basis: 100%;
   }
 
   .info__row dt {
