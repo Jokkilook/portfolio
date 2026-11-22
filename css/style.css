@@ -800,7 +800,8 @@ img {
   padding: 9px 0;
   border-top: 1px solid var(--line);
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 2px 12px;
 }
 
 .career__list .when {
@@ -812,7 +813,7 @@ img {
 
 .career__list .sub {
   margin-left: auto;
-  flex: none;
+  font-size: 13px;
   color: var(--muted);
 }
 

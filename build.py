@@ -227,7 +227,7 @@ def rail(prefix, home, counts, total):
     <div class="rail__bottom">
       <a href="mailto:{EMAIL}">{EMAIL}</a>
       <a class="plain" href="https://github.com/Jokkilook" target="_blank" rel="noopener">github.com/Jokkilook</a>
-      <span>상명대학교 게임학부 재학</span>
+      <span>상명대학교 게임전공 재학</span>
       {THEME_BUTTON}
     </div>
   </aside>"""
