@@ -13,7 +13,7 @@ links: Steam|https://store.steampowered.com/app/4729580/Wolf_Island/; GitHub|htt
 ---
 ## 게임 소개
 
-3D 멀티 생존 서바이벌 게임 (졸업 프로젝트)
+3D 4인 멀티플레이 생존 서바이벌 게임 (상명대학교 게임전공 졸업 프로젝트)
 
 ## 프로젝트 정보
 
@@ -21,6 +21,7 @@ links: Steam|https://store.steampowered.com/app/4729580/Wolf_Island/; GitHub|htt
 - 개발 기간: 2025.07 ~ 2026.06
 - 담당: 플레이어 시스템, 인벤토리·제작, 저장 시스템, 멀티플레이 로비·접속, UI
 - 사용 기술: Unreal Engine 5.5, C++, Blueprint, Steam (Advanced Sessions)
+- 출시: Steam
 
 ## 개요
 

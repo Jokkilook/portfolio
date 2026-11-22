@@ -1,6 +1,6 @@
 ---
 slug: moebius
-title: Moebius : EndlessDream
+title: Moebius: Endless Dream
 summary: 미스터리 방탈출 게임
 period: 2025.03 – 2025.07
 date: 2025-03-11
@@ -17,9 +17,9 @@ links: Steam|https://store.steampowered.com/app/3505310/Moebious_Endless_Dream/
 
 ## 프로젝트 정보
 
-- 팀 구성: 2인
+- 팀 구성: 3인 (상명대학교 게임전공 팀 프로젝트)
 - 개발 기간: 2025.03 ~ 2025.07
-- 담당: 게임플레이 프로그래밍 (상호작용, 인벤토리, 세이브/설정, UI), 스팀 연동, 현지화
+- 담당: 기획과 아트를 제외한 개발 전반. 게임플레이 프로그래밍 (상호작용, 인벤토리, 세이브/설정, UI), 스팀 연동, 현지화
 - 사용 기술: Unreal Engine 5, C++, Blueprint
 - 출시: Steam
 

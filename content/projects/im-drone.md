@@ -21,7 +21,7 @@ links: Steam|https://store.steampowered.com/app/3272680/Im_drone/; YouTube|https
 
 - 팀 구성: 2인
 - 개발 기간: 2024.07 ~ 2024.11
-- 담당: 드론 비행 시스템, 게임 모드, 레벨 디자인, UI·설정, 현지화, 최적화
+- 담당: 기획, 드론 비행 시스템, 게임 모드, 레벨 디자인, UI·설정, 현지화, 최적화
 - 사용 기술: Unreal Engine 5, C++, Blueprint
 - 출시: Steam
 

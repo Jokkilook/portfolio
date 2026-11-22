@@ -48,7 +48,7 @@
 <dl class="info glass">
 <div class="info__row"><dt>팀 구성</dt><dd>3인</dd></div>
 <div class="info__row"><dt>게임잼</dt><dd>에픽 메가잼 (2026 Epic AI MegaJam), 주제 "디렉터스 컷(감독판)"</dd></div>
-<div class="info__row"><dt>개발 기간</dt><dd>2026.11.12 ~ 2026.11.16</dd></div>
+<div class="info__row"><dt>개발 기간</dt><dd>2026.11.12 ~ 2026.11.16 (5일)</dd></div>
 <div class="info__row"><dt>담당</dt><dd>레벨 디자인, 에셋 제작, 적(드론, 터렛) 제작 (AI 및 에셋)</dd></div>
 <div class="info__row"><dt>출시</dt><dd><a href="https://jokkilook.itch.io/ignite" target="_blank" rel="noopener">itch.io</a> (Windows)</dd></div>
 <div class="info__row"><dt>개발 방식</dt><dd>Claude Code + Unreal MCP, 역할별 서브에이전트</dd></div>
@@ -86,6 +86,7 @@
 <ul>
 <li>팀원마다 자기 파트(기획 / 월드 / 플레이어 / 보스)를 맡아 각자 Claude Code 세션으로 작업하고, 브랜치를 합쳐 완성</li>
 <li>기획서(GDD), 팀 공통 인터페이스 문서, 작업 규칙(<code>CLAUDE.md</code>)을 먼저 만들고, 기획·개발·QA·아트 역할별 서브에이전트를 정의해 작업을 나눔</li>
+<li>개발 에이전트가 구현하고 리뷰 에이전트가 검토해 피드백을 주는 루프를 돌려, 결과물을 스스로 개선하게 함</li>
 <li>자동 테스트(에디터 70여 개, 게임 월드 30여 개)와 맵 점검으로 변경을 확인하고, 손맛·난이도처럼 AI가 판단할 수 없는 것은 사람이 플레이해서 결정</li>
 <li>실수한 것을 LESSONS 문서에 기록해 다음 세션이 반복하지 않게 함 (예: 빌드하지 않은 변경을 커밋해 빌드가 깨진 건, 같은 작업 폴더를 쓰는 세션끼리 git 인덱스가 섞인 건)</li>
 </ul>
