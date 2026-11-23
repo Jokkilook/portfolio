@@ -757,41 +757,6 @@ img {
   font-weight: 700;
 }
 
-/* ── AI로 만든 작업 도구 ─────────────────────────────── */
-.section__note {
-  margin-top: -12px;
-  color: var(--muted);
-}
-
-.tools {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-  gap: 12px;
-}
-
-.tool {
-  padding: 16px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.tool__for {
-  font-family: var(--font-label);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent-text);
-}
-
-.tool p {
-  color: var(--text-soft);
-}
-
-.tool code {
-  font-size: 0.85em;
-  color: var(--accent-text);
-}
-
 /* ── 기술 스택 ─────────────────────────────── */
 .skills {
   display: grid;

@@ -19,7 +19,6 @@ CONTENT = ROOT / "content" / "projects"
 OUT = ROOT / "projects"
 KIND_LABEL = {"ai": "AI 활용", "hand": "직접 구현"}
 FEATURED = "pung"  # 강조 테두리와 채운 버튼으로 표시하는 대표 프로젝트
-TOOL_COUNT = 8
 SKILL_COUNT = 10
 AWARD_COUNT = 5
 EMAIL = "swat2054@naver.com"
@@ -297,7 +296,6 @@ def rail(prefix, home, total):
       </div>
       <nav class="rail__nav" aria-label="섹션 이동">
         <a href="{base}#top" class="is-active">프로젝트<span class="count">{total}</span></a>
-        <a href="{base}#tools">AI 작업 도구<span class="count">{TOOL_COUNT}</span></a>
         <a href="{base}#skills">기술 스택<span class="count">{SKILL_COUNT}</span></a>
         <a href="{base}#career">수상, 이력<span class="count">{AWARD_COUNT}</span></a>
         <a href="{base}#about">소개</a>
