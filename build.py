@@ -19,9 +19,10 @@ CONTENT = ROOT / "content" / "projects"
 OUT = ROOT / "projects"
 KIND_LABEL = {"ai": "AI 활용", "hand": "직접 구현"}
 FEATURED = "pung"  # 강조 테두리와 채운 버튼으로 표시하는 대표 프로젝트
+TOOL_COUNT = 8
 SKILL_COUNT = 10
 AWARD_COUNT = 5
-EMAIL = "tjddbs8295@gmail.com"
+EMAIL = "swat2054@naver.com"
 
 FONTS = (
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
@@ -47,7 +48,7 @@ THEME_BUTTON = (
 
 
 def asset_version():
-    """CSS·JS가 바뀌면 값이 달라지는 꼬리표. 브라우저가 예전 파일을 캐시에서 꺼내 쓰지 않게 한다."""
+    """CSS, JS가 바뀌면 값이 달라지는 꼬리표. 브라우저가 예전 파일을 캐시에서 꺼내 쓰지 않게 한다."""
     files = [ROOT / "css" / "style.css", ROOT / "js" / "main.js"]
     return str(int(max(f.stat().st_mtime for f in files)))
 
@@ -89,6 +90,7 @@ def youtube_id(url):
 
 def render_body(body):
     out = []
+    table = []
     in_list = in_section = info = False
 
     def close_list():
@@ -97,8 +99,28 @@ def render_body(body):
             out.append("</dl>" if info else "</ul>")
             in_list = False
 
+    def flush_table():
+        """모아 둔 | 표 | 줄을 <table>로 내보낸다. 첫 줄이 머리글, |---| 줄은 건너뛴다."""
+        if not table:
+            return
+        rows = [r for r in table if not all(set(c) <= set("-: ") for c in r)]
+        table.clear()
+        head = "".join(f"<th>{inline(c)}</th>" for c in rows[0])
+        cells = "".join(
+            "<tr>" + "".join(f"<td>{inline(c)}</td>" for c in r) + "</tr>" for r in rows[1:]
+        )
+        out.append(
+            f'<div class="tablewrap"><table class="doc-table"><thead><tr>{head}</tr></thead>'
+            f"<tbody>{cells}</tbody></table></div>"
+        )
+
     for raw in body.splitlines():
         line = raw.strip()
+        if line.startswith("|"):
+            close_list()
+            table.append([c.strip() for c in line.strip("|").split("|")])
+            continue
+        flush_table()
         if not line:
             close_list()
             continue
@@ -141,6 +163,7 @@ def render_body(body):
         else:
             close_list()
             out.append(f"<p>{inline(line)}</p>")
+    flush_table()
     close_list()
     if in_section:
         out.append("</section>")
@@ -270,12 +293,13 @@ def rail(prefix, home, total):
       <div>
         <a class="rail__name" href="{base}#top">조성윤</a>
         <p class="rail__intro">직접 만들어 보며 익힌 것을 기준 삼아, <em>AI와 함께 일하는</em> 게임 개발자 조성윤입니다.</p>
-        <div class="rail__role">Unreal Engine · C++</div>
+        <div class="rail__role">Unreal Engine, C++</div>
       </div>
       <nav class="rail__nav" aria-label="섹션 이동">
         <a href="{base}#top" class="is-active">프로젝트<span class="count">{total}</span></a>
+        <a href="{base}#tools">AI 작업 도구<span class="count">{TOOL_COUNT}</span></a>
         <a href="{base}#skills">기술 스택<span class="count">{SKILL_COUNT}</span></a>
-        <a href="{base}#career">수상 · 이력<span class="count">{AWARD_COUNT}</span></a>
+        <a href="{base}#career">수상, 이력<span class="count">{AWARD_COUNT}</span></a>
         <a href="{base}#about">소개</a>
       </nav>
       <div class="rail__block">
@@ -329,7 +353,7 @@ def detail(p, newer, older, total):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{title} · 조성윤 포트폴리오</title>
+  <title>{title}, 조성윤 포트폴리오</title>
   <meta name="description" content="{html.escape(p['summary'])}">
   {FONTS}
   {THEME_BOOT}

@@ -757,6 +757,41 @@ img {
   font-weight: 700;
 }
 
+/* ── AI로 만든 작업 도구 ─────────────────────────────── */
+.section__note {
+  margin-top: -12px;
+  color: var(--muted);
+}
+
+.tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 12px;
+}
+
+.tool {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tool__for {
+  font-family: var(--font-label);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-text);
+}
+
+.tool p {
+  color: var(--text-soft);
+}
+
+.tool code {
+  font-size: 0.85em;
+  color: var(--accent-text);
+}
+
 /* ── 기술 스택 ─────────────────────────────── */
 .skills {
   display: grid;
@@ -1027,6 +1062,34 @@ img {
   border-radius: 4px;
   background: var(--line);
   font-size: 0.9em;
+  color: var(--accent-text);
+}
+
+.tablewrap {
+  overflow-x: auto;
+}
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.doc-table th,
+.doc-table td {
+  width: 50%;
+  padding: 9px 16px;
+  border-top: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.doc-table th {
+  border-top: 0;
+  font-size: 13px;
   color: var(--accent-text);
 }
 
