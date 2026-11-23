@@ -130,10 +130,14 @@ def render_body(body):
             title = line[3:].strip()
             info = title == "프로젝트 정보"
             in_section = True
-            out.append(f'<section class="doc__section">\n<h2>{inline(title)}</h2>')
+            cls = "doc__section doc__key" if title == "핵심 고민" else "doc__section"
+            out.append(f'<section class="{cls}">\n<h2>{inline(title)}</h2>')
         elif line.startswith("#### "):
             close_list()
-            out.append(f"<h4>{inline(line[5:])}</h4>")
+            # "#### 제목 {역량}" 의 중괄호는 역량 이름표로 표시한다
+            head, _, tag = line[5:].rstrip("}").partition(" {")
+            mark = f' <span class="comp">{inline(tag)}</span>' if tag else ""
+            out.append(f"<h4>{inline(head)}{mark}</h4>")
         elif line.startswith("### "):
             close_list()
             out.append(f"<h3>{inline(line[4:])}</h3>")

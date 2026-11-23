@@ -1006,6 +1006,33 @@ img {
   color: var(--accent-text);
 }
 
+.doc__section h4 .comp {
+  margin-left: 6px;
+  padding: 1px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+
+.doc__key {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  background: var(--panel);
+}
+
+.doc__key h2 {
+  padding-top: 0;
+  border-top: 0;
+  font-size: 16px;
+}
+
 .doc__section p,
 .doc__section ul {
   color: var(--text-soft);
